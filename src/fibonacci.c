@@ -16,7 +16,7 @@ const int CORRECT_FIBS[20] = {
 int fibonacciSimple (int);
 int fibonacciRecursive(int, int, int);
 
-int main() {
+void main() {
   int i = 0;
 
   for (i = 0; i < 20; i++) {
@@ -31,8 +31,6 @@ int main() {
   for (i = 0; i < 10000; i++) {
     assertIntEquals(fibonacciSimple(i), fibRecursive(i));
   }
-
-  return -1;
 }
 
 /**
