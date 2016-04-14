@@ -1,52 +1,57 @@
 /**
- * LAB1 (Due 04/13/2016)
- *   1. nth Fibonacci number
+ * 1. Calculate the nth Fibonacci number
  */
 
 #include<stdio.h>
 #include<stdlib.h>
-#include "utils.h"
+#include"utils.h"
 
 const int CORRECT_FIBS[20] = {
-   1,    1,    2,    3,    5,
-   8,   13,   21,   34,   55,
+  1,   1,    2,    3,    5,
+  8,   13,   21,   34,   55,
   89,  144,  233,  377,  610,
- 987, 1597, 2584, 4181, 6765
+  987, 1597, 2584, 4181, 6765
 };
 
-int fibonacciSimple (int);
+int fibonacciIterative (int);
 int fibonacciRecursive(int);
 
 void main() {
-  int i = 0,
-      failedAssertions = 0;
+  int i, failedAssertions = 0;
+
+  printf("\n~~Fibonacci~~\n\n");
 
   for (i = 0; i < 20; i++) {
-   // Compare the results the simple fibonacci functiton with the correct values
-    failedAssertions += assertIntEquals(fibonacciSimple(i), CORRECT_FIBS[i]);
+    // Compare the results the simple fibonacci functiton with the correct values
+    failedAssertions += assertIntEquals(fibonacciIterative(i), CORRECT_FIBS[i]);
 
     // Compare the results of the recursive fibonacci function with the correct values
     failedAssertions += assertIntEquals(fibonacciRecursive(i), CORRECT_FIBS[i]);
   }
 
-  // Compare the results of the fibonacci functions with oneanother
+  // Compare the results of the fibonacci functions with one another
   for (i = 0; i < 10000; i++) {
-    failedAssertions += assertIntEquals(fibonacciSimple(i), fibonacciRecursive(i));
+    failedAssertions += assertIntEquals(fibonacciIterative(i), fibonacciRecursive(i));
   }
 
   if (0 == failedAssertions) {
-   printf("Fibonacci:\tAll tests pass!");
-   exit(0);
+    printf(SUCCESS_STRING);
+    printf("Fibonacci sequence from 0 to 20:\n");
+    for (i = 0; i < 20; i++) {
+      printf("%d, ", fibonacciIterative(i));
+    }
+
+    exit(0);
   } else {
-   printf("Error:\t%d asserton%c failed", failedAssertions, 1 == failedAssertions ? '\0' : 's');
-   exit(1);
+    printf(ERROR_STRING, failedAssertions, 1 == failedAssertions ? '\0' : 's');
+    exit(1);
   }
 }
 
 /**
- * Return the nth fibonacci number
+ * Return the nth fibonacci number iteratively
  */
-int fibonacciSimple (int n) {
+int fibonacciIterative (int n) {
   int current = 1,
       previous = 1,
       next,
@@ -68,7 +73,7 @@ int fibonacciRecursive (int n) {
   return _fibonacciRecursive(n, 1, 1);
 }
 int _fibonacciRecursive (int n, int current, int previous) {
- if(n == 0) return previous;
- if(n == 1) return current;
- return _fibonacciRecursive(n - 1, current + previous, current);
+  if(n == 0) return previous;
+  if(n == 1) return current;
+  return _fibonacciRecursive(n - 1, current + previous, current);
 }
