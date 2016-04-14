@@ -7,10 +7,10 @@
 #include"utils.h"
 
 const int CORRECT_FIBS[20] = {
-  1,   1,    2,    3,    5,
-  8,   13,   21,   34,   55,
-  89,  144,  233,  377,  610,
-  987, 1597, 2584, 4181, 6765
+  0,   1,   1,    2,    3,
+  5,   8,   13,   21,   34,
+  55,  89,  144,  233,  377,
+  610, 987, 1597, 2584, 4181
 };
 
 int fibonacciIterative (int);
@@ -30,7 +30,7 @@ void main() {
   }
 
   // Compare the results of the fibonacci functions with one another
-  for (i = 0; i < 10000; i++) {
+  for (i = 0; i < 50; i++) {
     failedAssertions += assertIntEquals(fibonacciIterative(i), fibonacciRecursive(i));
   }
 
@@ -53,12 +53,12 @@ void main() {
  * Return the nth fibonacci number iteratively
  */
 int fibonacciIterative (int n) {
-  int current = 1,
+  int current = n == 0 ? 0 : 1,
       previous = 1,
       next,
       i;
 
-  for (i = 1; i < n; i++) {
+  for (i = 2; i < n; i++) {
     next = current + previous;
     previous = current;
     current = next;
@@ -71,7 +71,7 @@ int fibonacciIterative (int n) {
  */
 int fibonacciRecursive (int n) {
   // Call recursive function with initial parameters
-  return _fibonacciRecursive(n, 1, 1);
+  return _fibonacciRecursive(n, 1, 0);
 }
 int _fibonacciRecursive (int n, int current, int previous) {
   if(n == 0) return previous;
