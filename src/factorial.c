@@ -36,6 +36,7 @@ void main() {
       printf("%d, ", factorialIterative(i));
     }
 
+    printf("\n");
     exit(0);
   } else {
     printf(ERROR_STRING, failedAssertions, 1 == failedAssertions ? '\0' : 's');

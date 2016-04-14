@@ -32,6 +32,7 @@ void main() {
       printf("%d, ", collatzCountIterative(i));
     }
 
+    printf("\n");
     exit(0);
   } else {
     printf(ERROR_STRING, failedAssertions, 1 == failedAssertions ? '\0' : 's');
