@@ -4,6 +4,7 @@
  */
 
 #include<stdio.h>
+#include<stdlib.h>
 #include "utils.h"
 
 const int CORRECT_FIBS[20] = {
@@ -14,7 +15,7 @@ const int CORRECT_FIBS[20] = {
 };
 
 int fibonacciSimple (int);
-int fibonacciRecursive(int, int, int);
+int fibonacciRecursive(int);
 
 void main() {
   int i = 0,
@@ -25,12 +26,12 @@ void main() {
     failedAssertions += assertIntEquals(fibonacciSimple(i), CORRECT_FIBS[i]);
 
     // Compare the results of the recursive fibonacci function with the correct values
-    failedAssertions += assertIntEquals(fibRecursive(i), CORRECT_FIBS[i]);
+    failedAssertions += assertIntEquals(fibonacciRecursive(i), CORRECT_FIBS[i]);
   }
 
   // Compare the results of the fibonacci functions with oneanother
   for (i = 0; i < 10000; i++) {
-    failedAssertions += assertIntEquals(fibonacciSimple(i), fibRecursive(i));
+    failedAssertions += assertIntEquals(fibonacciSimple(i), fibonacciRecursive(i));
   }
 
   if (0 == failedAssertions) {
@@ -62,12 +63,12 @@ int fibonacciSimple (int n) {
 /**
  * Compute the nth fibonacci value using recursion
  */
-int fibRecursive(int n) {
+int fibonacciRecursive (int n) {
   // Call recursive function with initial parameters
-  return _fibRecursive(n, 1, 1);
+  return _fibonacciRecursive(n, 1, 1);
 }
-int _fibRecursive (int n, int current, int previous) {
+int _fibonacciRecursive (int n, int current, int previous) {
  if(n == 0) return previous;
  if(n == 1) return current;
- return _fibRecursive(n - 1, current + previous, current);
+ return _fibonacciRecursive(n - 1, current + previous, current);
 }
