@@ -17,19 +17,28 @@ int fibonacciSimple (int);
 int fibonacciRecursive(int, int, int);
 
 void main() {
-  int i = 0;
+  int i = 0,
+      failedAssertions = 0;
 
   for (i = 0; i < 20; i++) {
    // Compare the results the simple fibonacci functiton with the correct values
-    assertIntEquals(fibonacciSimple(i), CORRECT_FIBS[i]);
+    failedAssertions += assertIntEquals(fibonacciSimple(i), CORRECT_FIBS[i]);
 
     // Compare the results of the recursive fibonacci function with the correct values
-    assertIntEquals(fibRecursive(i), CORRECT_FIBS[i]);
+    failedAssertions += assertIntEquals(fibRecursive(i), CORRECT_FIBS[i]);
   }
 
   // Compare the results of the fibonacci functions with oneanother
   for (i = 0; i < 10000; i++) {
-    assertIntEquals(fibonacciSimple(i), fibRecursive(i));
+    failedAssertions += assertIntEquals(fibonacciSimple(i), fibRecursive(i));
+  }
+
+  if (0 == failedAssertions) {
+   printf("Fibonacci:\tAll tests pass!");
+   exit(0);
+  } else {
+   printf("Error:\t%d asserton%c failed", failedAssertions, 1 == failedAssertions ? '\0' : 's');
+   exit(1);
   }
 }
 
