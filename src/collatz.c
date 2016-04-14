@@ -25,19 +25,7 @@ void main() {
     failedAssertions += assertIntEquals(collatzCountIterative(i), CORRECT_COLLATZ[i]);
   }
 
-  if (0 == failedAssertions) {
-    printf(SUCCESS_STRING);
-    printf("Collatz sequence lengths from 0 to 20:\n");
-    for (i = 0; i < 20; i++) {
-      printf("%d, ", collatzCountIterative(i));
-    }
-
-    printf("\n");
-    exit(0);
-  } else {
-    printf(ERROR_STRING, failedAssertions, 1 == failedAssertions ? '\0' : 's');
-    exit(1);
-  }
+  exit(printTestReport(failedAssertions, &collatzCountIterative, "Collatz sequence lengths from 0 to 20:\n"));
 }
 
 /**

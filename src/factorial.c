@@ -29,19 +29,7 @@ void main() {
     failedAssertions += assertIntEquals(factorialRecursive(i), CORRECT_FACTORIALS[i]);
   }
 
-  if (0 == failedAssertions) {
-    printf(SUCCESS_STRING);
-    printf("0! to 10!:\n");
-    for (i = 0; i < 10; i++) {
-      printf("%d, ", factorialIterative(i));
-    }
-
-    printf("\n");
-    exit(0);
-  } else {
-    printf(ERROR_STRING, failedAssertions, 1 == failedAssertions ? '\0' : 's');
-    exit(1);
-  }
+  exit(printTestReport(failedAssertions, &factorialIterative, "0! to 10!:\n"));
 }
 
 /**
