@@ -1,26 +1,28 @@
 CC     = gcc
 CFLAGS = -g
 RM     = rm -f
-UTILS  = ./src/utils.h
+INCLUDES  = ./include/utils.h ./include/fibonacci.h ./include/hash-table.h
 
 
-default: fibonacci
+default: encoder
 
-fibonacci: ./src/fibonacci.c
-	$(CC) $(CFLAGS) -o ./bin/fibonacci ${UTILS} ./src/fibonacci.c
+encoder: ./src/fib-encoder.c
+	$(CC) $(CFLAGS) -o ./bin/fib-encoder ${INCLUDES} ./src/fib-encoder.c
 
-factorial: ./src/factorial.c
-	$(CC) $(CFLAGS) -o ./bin/factorial ${UTILS} ./src/factorial.c
+polycalc: ./src/poly-calculator.c
+	${CC} ${CFLAGS} -o ./bin/poly-calculator ${INCLUDES} ./src/poly-calculator.c
 
-collatz: ./src/collatz.c
-	$(CC) $(CFLAGS) -o ./bin/collatz ${UTILS} ./src/collatz.c
-
-all: fibonacci factorial collatz
+all: encoder polycalc
 
 clean:
 	$(RM) ./bin/**
 
 run:
-	./bin/fibonacci
-	./bin/factorial
-	./bin/collatz
+	./bin/fib-encoder
+	./bin/poly-calculator
+
+fib: all
+	./bin/fib-encoder
+
+poly: all
+	./bin/poly-calculator
