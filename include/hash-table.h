@@ -1,3 +1,5 @@
+// https://gist.github.com/tonious/1377667
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <limits.h>
