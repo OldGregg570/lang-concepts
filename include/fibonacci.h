@@ -1,5 +1,5 @@
 /**
- * 1. Calculate the nth Fibonacci number
+ * Compute fibonacci numbers 
  */
 
 #include<stdio.h>
@@ -13,28 +13,17 @@ const int CORRECT_FIBS[20] = {
   610, 987, 1597, 2584, 4181
 };
 
+int fibonacci(int);
 int fibonacciIterative (int);
 int fibonacciRecursive(int);
 
-void main() {
-  int i, failedAssertions = 0;
+void fibonacci_test();
 
-  printf("\n~~Fibonacci~~\n\n");
-
-  for (i = 0; i < 20; i++) {
-    // Compare the results the simple fibonacci functiton with the correct values
-    failedAssertions += assertIntEquals(fibonacciIterative(i), CORRECT_FIBS[i]);
-
-    // Compare the results of the recursive fibonacci function with the correct values
-    failedAssertions += assertIntEquals(fibonacciRecursive(i), CORRECT_FIBS[i]);
-  }
-
-  // Compare the results of the fibonacci functions with one another
-  for (i = 0; i < 50; i++) {
-    failedAssertions += assertIntEquals(fibonacciIterative(i), fibonacciRecursive(i));
-  }
-
-  exit(printTestReport(failedAssertions, &fibonacciIterative, "Fibonacci sequence from 0 to 10:\n"));
+/**
+ * Return the nth fibonacci number
+ */
+int fibonacci (int n) {
+ return fibonacciIterative(n);
 }
 
 /**
@@ -65,4 +54,25 @@ int _fibonacciRecursive (int n, int current, int previous) {
   if(n == 0) return previous;
   if(n == 1) return current;
   return _fibonacciRecursive(n - 1, current + previous, current);
+}
+
+void fibonacci_test() {
+  int i, failedAssertions = 0;
+
+  printf("\n~~Fibonacci~~\n\n");
+
+  for (i = 0; i < 20; i++) {
+    // Compare the results the simple fibonacci functiton with the correct values
+    failedAssertions += assertIntEquals(fibonacciIterative(i), CORRECT_FIBS[i]);
+
+    // Compare the results of the recursive fibonacci function with the correct values
+    failedAssertions += assertIntEquals(fibonacciRecursive(i), CORRECT_FIBS[i]);
+  }
+
+  // Compare the results of the fibonacci functions with one another
+  for (i = 0; i < 50; i++) {
+    failedAssertions += assertIntEquals(fibonacciIterative(i), fibonacciRecursive(i));
+  }
+
+  exit(printTestReport(failedAssertions, &fibonacciIterative, "Fibonacci sequence from 0 to 10:\n"));
 }
