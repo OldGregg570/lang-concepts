@@ -30,7 +30,7 @@
 void main() {
   printf("Fibonacci Encoder\n\n");
 
-  unsigned int inputNumber = 6543;
+  unsigned int inputNumber = 482259191688;
   unsigned int fibonacciNumbers[128] = { 0, 1, 1, 2, 3, 5 };
   unsigned int encoded[128] = { 0 };
   unsigned int n = 0;

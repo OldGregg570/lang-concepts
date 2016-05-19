@@ -1,5 +1,5 @@
 /**
- * Compute fibonacci numbers 
+ * Compute fibonacci numbers
  */
 
 #include<stdio.h>

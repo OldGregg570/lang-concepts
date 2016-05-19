@@ -40,10 +40,28 @@ static hashtable_t* gVariables;
 void main() {
  gVariables = ht_create( 65536 );
 
- char programInput[] = "var('x y z');\nvar('a', 10)\nvar('b', 20)\nvar('c', 30)\nprint a\nquit";
+ char programInput[] = "var('x y z');\n \
+                        var('a',10);\n \
+                        poly f=2*x^3 + 3*x+10;\n \
+                        poly g=x+1;\n \
+                        poly h= f*g;\n \
+                        poly j=a*x;\n \
+                        print f;\n \
+                        print g;\n \
+                        print h;\n \
+                        print eval(f,x=10);\n \
+                        print eval(h,x=5);\n \
+                        poly u=2*(x+y)^2 + 3*x*y;\n \
+                        poly v=f*u;\n \
+                        print u;\n \
+                        print v;\n \
+                        print eval(u,x=5,y=6);\n \
+                        print eval(u,x=6,y=5);\n \
+                        quit;\n";
+
  //hashtable_t* variables = ht_create( 65536 );
 
- printf("Polynomial Calculater\n-\n-\n");
+ printf("Polynomial Calculater\n");
 
  interpretProgram(programInput);
 
@@ -89,8 +107,6 @@ void interpretLine (char* currentLine) {
  } else {
   printf("Unexpected Token: %s\n", currentLine);
  }
-
- printf("\n===\n");
 }
 
 
@@ -113,6 +129,5 @@ void interpretVarStatement(char* varStatment) {
    printf("%s\n", currentToken);
  }
 
- printf("HAS: %d", hasAssignment);
  // For each token in the current line on the right hand side of the expression
 }
