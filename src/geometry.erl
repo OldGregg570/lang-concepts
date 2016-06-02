@@ -1,3 +1,5 @@
+%%% Geometry Server
+
 -module(geometry).
 -export([area/1]).
 -export([loop/0]).
@@ -68,6 +70,3 @@ loop() ->
       FROM ! { self(), MSG },
       loop()
   end.
-
-%%S = spawn(geometry, loop, []).
-%%S ! {self(), {area, {square, 3}}}.
